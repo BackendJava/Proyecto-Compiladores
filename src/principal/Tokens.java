@@ -21,5 +21,16 @@ public enum Tokens {
     Identificador,
     Numero,
     Modulo,
-    ERROR
+    ERROR,
+    Igualque,
+    Masmas,
+    Menosmenos,
+    Menorque,
+    Mayorque,
+    Puntocoma,
+    Distintoque,
+    Exponencial,
+    Pabrir,
+    Pcerrar,
+    Coma
 }
