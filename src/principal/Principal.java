@@ -71,7 +71,9 @@ public class Principal extends javax.swing.JFrame {
         btnEliminar = new componentes.rsbuttom.RSButtonMetro();
         txtEntrada = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtArea = new javax.swing.JTextArea();
+        txtArea1 = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtArea2 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -88,12 +90,15 @@ public class Principal extends javax.swing.JFrame {
                 jPanel1MousePressed(evt);
             }
         });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(10, 133, 175));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Compilador LOOP");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 6, -1, 109));
 
         btnCerrar.setBackground(new java.awt.Color(255, 255, 255));
         btnCerrar.setForeground(new java.awt.Color(0, 153, 204));
@@ -105,8 +110,10 @@ public class Principal extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
+        jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1066, 15, 49, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-txt.png"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, 109));
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setForeground(new java.awt.Color(0, 153, 204));
@@ -118,39 +125,13 @@ public class Principal extends javax.swing.JFrame {
                 btnMinimizarActionPerformed(evt);
             }
         });
+        jPanel2.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(999, 15, 49, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
-                .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(61, 61, 61))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 5, 1176, -1));
 
         lblNombre.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 359, 559, 17));
 
         btnAbrir.setBackground(new java.awt.Color(10, 133, 175));
         btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-abrir.png"))); // NOI18N
@@ -164,6 +145,7 @@ public class Principal extends javax.swing.JFrame {
                 btnAbrirActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAbrir, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 232, 225, 100));
 
         btnNuevo.setBackground(new java.awt.Color(10, 133, 175));
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono.nuevo.png"))); // NOI18N
@@ -177,6 +159,7 @@ public class Principal extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 126, 225, 100));
 
         btnGuardar.setBackground(new java.awt.Color(10, 133, 175));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-guardar.png"))); // NOI18N
@@ -190,6 +173,7 @@ public class Principal extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 338, 225, 100));
 
         btnEliminar.setBackground(new java.awt.Color(10, 133, 175));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-eliminar.png"))); // NOI18N
@@ -203,69 +187,26 @@ public class Principal extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 444, 225, 100));
 
         txtEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEntradaActionPerformed(evt);
             }
         });
+        jPanel1.add(txtEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 144, 921, 49));
 
-        txtArea.setColumns(20);
-        txtArea.setRows(5);
-        jScrollPane2.setViewportView(txtArea);
+        txtArea1.setColumns(20);
+        txtArea1.setRows(5);
+        jScrollPane2.setViewportView(txtArea1);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEntrada)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(btnAbrir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 440, 400));
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAbrir, btnGuardar, btnNuevo});
+        txtArea2.setColumns(20);
+        txtArea2.setRows(5);
+        jScrollPane1.setViewportView(txtArea2);
 
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAbrir, btnEliminar, btnGuardar, btnNuevo});
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 470, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,7 +216,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
         );
 
         pack();
@@ -289,7 +230,7 @@ public class Principal extends javax.swing.JFrame {
             a1.lblMensaje2.setText("¿Deseas guardarlo?.");
             a1.setVisible(true);
             if (AlertWarningSave.guardar) {
-                new Funciones().CrearFicheroNuevo(this, this.txtArea.getText(), this.lblNombre.getText());
+                new Funciones().CrearFicheroNuevo(this, this.txtArea1.getText(), this.lblNombre.getText());
                 FadeEffect.fadeOutFrame(this, 50, 0.1f);
             }
             if (AlertWarningSave.noGuardar) {
@@ -356,7 +297,7 @@ public class Principal extends javax.swing.JFrame {
                 Tokens tokens = lexer.yylex();
                 if (tokens == null) {
                     resultado += "FIN";
-                    txtArea.setText(resultado);
+                    txtArea1.setText(resultado);
                     return;
                 }
                 switch (tokens) {
@@ -385,11 +326,11 @@ public class Principal extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (abrioArchivo) {
             System.out.println("Existente");
-            new Funciones().GuardarFichero(this.txtArea.getText(), this.lblNombre.getText());
+            new Funciones().GuardarFichero(this.txtArea1.getText(), this.lblNombre.getText());
         }
         if (creoNuevo) {
             System.out.println("Nuevo");
-            new Funciones().CrearFicheroNuevo(this, this.txtArea.getText(), this.lblNombre.getText());
+            new Funciones().CrearFicheroNuevo(this, this.txtArea1.getText(), this.lblNombre.getText());
         }
         if (!creoNuevo && !abrioArchivo) {
             alertas.AlertInformation a = new AlertInformation(this, true);
@@ -403,7 +344,7 @@ public class Principal extends javax.swing.JFrame {
         if (abrioArchivo) {
             new Funciones().BorrarFichero(this);
             this.lblNombre.setText("");
-            this.txtArea.setText("");
+            this.txtArea1.setText("");
         } else {
             alertas.AlertInformation a = new AlertInformation(this, true);
             a.lblMensaje1.setText("Debes abrir un archvo");
@@ -473,9 +414,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JLabel lblNombre;
-    public javax.swing.JTextArea txtArea;
+    public javax.swing.JTextArea txtArea1;
+    public javax.swing.JTextArea txtArea2;
     private javax.swing.JTextField txtEntrada;
     // End of variables declaration//GEN-END:variables
 }

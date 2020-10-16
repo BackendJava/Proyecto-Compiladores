@@ -5,7 +5,6 @@
  */
 package principal;
 
-
 import java.io.File;
 
 /**
@@ -13,12 +12,16 @@ import java.io.File;
  * @author Charly Ponce
  */
 public class Principal_1 {
+
     public static void main(String[] args) {
-        
-        String ruta = "C:/Users/Yow/Desktop/ProyectoCompiladores/src/principal/Lexer.flex";
+
+        // String ruta = "C:/Users/Yow/Desktop/ProyectoCompiladores/src/principal/Lexer.flex";
+        String ruta = "C:/Users/elmer/Desktop/ProyectoCompiladores/src/principal/Lexer.flex";
+
         generarLexer(ruta);
     }
-    public static void generarLexer(String ruta){
+
+    public static void generarLexer(String ruta) {
         File archivo = new File(ruta);
         JFlex.Main.generate(archivo);
     }

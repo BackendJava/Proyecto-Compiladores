@@ -48,9 +48,9 @@ public class Funciones {
                         /*Imprime la linea leida*/
                         datos = datos + Slinea + "\n";
                     }
-                    principal.txtArea.setText(datos);
-                    principal.txtArea.setEditable(true);
-                    principal.txtArea.requestFocus();
+                    principal.txtArea2.setText(datos);
+                    principal.txtArea2.setEditable(true);
+                    principal.txtArea2.requestFocus();
                     /*Cierra el flujo*/
                     leeArchivo.close();
                     this.principal.abrioArchivo = true;
