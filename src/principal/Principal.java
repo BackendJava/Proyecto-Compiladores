@@ -7,6 +7,7 @@ package principal;
 
 //import AnalizadorLexico.FrmPrincipal;
 import alertas.AlertInformation;
+import alertas.AlertSucess;
 import alertas.AlertWarning;
 import alertas.AlertWarningSave;
 import componentes.FadeEffect;
@@ -22,6 +23,7 @@ import java.io.Reader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -196,14 +198,29 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel1.add(txtEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 144, 921, 49));
 
+        txtArea1.setEditable(false);
         txtArea1.setColumns(20);
         txtArea1.setRows(5);
+        txtArea1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtArea1MousePressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(txtArea1);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 440, 400));
 
+        txtArea2.setEditable(false);
         txtArea2.setColumns(20);
         txtArea2.setRows(5);
+        txtArea2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtArea2MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtArea2MousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtArea2);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 470, 400));
@@ -271,14 +288,14 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
 
-//        JOptionPane.showInputDialog(null, "");
-//        contadorNuevo++;
-//        this.lblNombre.setText("Archivo" + contadorNuevo + ".txt");
-//        this.txtArea.setText("");
-//        this.txtArea.setEditable(true);
-//        this.txtArea.requestFocus();
-//        creoNuevo = true;
-//        abrioArchivo = false;
+        //JOptionPane.showInputDialog(null, "");
+        contadorNuevo++;
+        this.lblNombre.setText("Archivo" + contadorNuevo + ".txt");
+        this.txtArea1.setText("");
+        this.txtArea1.setEditable(true);
+        this.txtArea1.requestFocus();
+        creoNuevo = true;
+        abrioArchivo = false;
         File archivo = new File("archivo.txt");
         PrintWriter escribir;
         try {
@@ -327,10 +344,19 @@ public class Principal extends javax.swing.JFrame {
         if (abrioArchivo) {
             System.out.println("Existente");
             new Funciones().GuardarFichero(this.txtArea1.getText(), this.lblNombre.getText());
+            alertas.AlertSucess a = new AlertSucess(this, true);
+            a.lblMensaje1.setText("Se Guardo Correctamene");
+            a.lblMensaje2.setText("");
+            a.setVisible(true);
         }
         if (creoNuevo) {
             System.out.println("Nuevo");
             new Funciones().CrearFicheroNuevo(this, this.txtArea1.getText(), this.lblNombre.getText());
+            new Funciones().GuardarFichero(this.txtArea1.getText(), this.lblNombre.getText());
+            alertas.AlertSucess a = new AlertSucess(this, true);
+            a.lblMensaje1.setText("Se Guardo Correctamene");
+            a.lblMensaje2.setText("crear un nuevo archivo.");
+            a.setVisible(true);
         }
         if (!creoNuevo && !abrioArchivo) {
             alertas.AlertInformation a = new AlertInformation(this, true);
@@ -354,8 +380,34 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEntradaActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtEntradaActionPerformed
+
+    
+    private void txtAreaMousePressed(java.awt.event.MouseEvent evt) {                                     
+        
+    }   
+    private void txtArea2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtArea2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtArea2MouseClicked
+
+    private void txtArea2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtArea2MousePressed
+        if (!this.txtArea2.isEditable()) {
+            alertas.AlertInformation a = new AlertInformation(this, true);
+            a.lblMensaje1.setText("Para poder escribir debes");
+            a.lblMensaje2.setText("crear un nuevo archivo.");
+            a.setVisible(true);
+        }
+    }//GEN-LAST:event_txtArea2MousePressed
+
+    private void txtArea1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtArea1MousePressed
+        if (!this.txtArea2.isEditable()) {
+            alertas.AlertInformation a = new AlertInformation(this, true);
+            a.lblMensaje1.setText("Para poder escribir debes");
+            a.lblMensaje2.setText("crear un nuevo archivo.");
+            a.setVisible(true);
+        }
+    }//GEN-LAST:event_txtArea1MousePressed
 
     /**
      * @param args the command line arguments
