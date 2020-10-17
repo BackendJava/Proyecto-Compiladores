@@ -1,5 +1,9 @@
-numero: Es un Identificador
-554: Es un Numero
-cadena: Es una Palabra Reservada
-dff: Es un Identificador
-FIN
+clase Impar
+ propiedades publicas :
+  cadena hola
+ metodos publicos :
+  entero esImpar ( entero numero )
+si numero % 2 entonces
+devolver 1
+sino
+devolver 0

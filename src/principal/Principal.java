@@ -21,6 +21,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -41,6 +42,7 @@ public class Principal extends javax.swing.JFrame {
     public static boolean creoNuevo = false;
     public static boolean abrioArchivo = false;
     public static boolean abrir = false;
+    private int cont;
    
 
     /**
@@ -79,6 +81,8 @@ public class Principal extends javax.swing.JFrame {
         txtArea1 = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea2 = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Lineas = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -118,7 +122,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1066, 15, 49, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-txt.png"))); // NOI18N
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, 109));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 9, -1, 120));
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setForeground(new java.awt.Color(0, 153, 204));
@@ -199,7 +203,7 @@ public class Principal extends javax.swing.JFrame {
                 txtEntradaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 144, 921, 49));
+        jPanel1.add(txtEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 144, 860, 49));
 
         txtArea1.setEditable(false);
         txtArea1.setColumns(20);
@@ -211,7 +215,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(txtArea1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 440, 400));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 390, 400));
 
         txtArea2.setEditable(false);
         txtArea2.setColumns(20);
@@ -224,9 +228,20 @@ public class Principal extends javax.swing.JFrame {
                 txtArea2MousePressed(evt);
             }
         });
+        txtArea2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtArea2KeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtArea2);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 470, 400));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 450, 400));
+
+        Lineas.setColumns(20);
+        Lineas.setRows(5);
+        jScrollPane3.setViewportView(Lineas);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 30, 420));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,7 +251,9 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -421,6 +438,23 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtArea1MousePressed
 
+    private void txtArea2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtArea2KeyReleased
+        StringTokenizer st = new StringTokenizer(txtArea2.getText(),"\n",true);
+        String txt = "",token;
+        cont = 1;
+
+        while (st.hasMoreTokens()){
+            token= st.nextToken();
+            if("\n".equals(token)) cont++;
+        }
+
+        for(int i = 1; i <= cont; i++){
+            txt += i+"\n";
+        }
+        Lineas.setText(txt);
+        
+    }//GEN-LAST:event_txtArea2KeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -468,6 +502,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Lineas;
     private componentes.rsbuttom.RSButtonMetro btnAbrir;
     private principal.MaterialButton btnCerrar;
     private componentes.rsbuttom.RSButtonMetro btnEliminar;
@@ -480,6 +515,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     public static javax.swing.JLabel lblNombre;
     public javax.swing.JTextArea txtArea1;
     public javax.swing.JTextArea txtArea2;
