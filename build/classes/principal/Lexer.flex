@@ -50,6 +50,7 @@ coseno |
 tangente |
 logaritmo |
 raiz |
+estatico |
 
 desde {lexeme=yytext(); return Reservadas;}
 {espacio} {/*Ignore*/}

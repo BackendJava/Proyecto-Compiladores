@@ -6,6 +6,7 @@
 package principal;
 
 //import AnalizadorLexico.FrmPrincipal;
+import alertas.AlertError;
 import alertas.AlertInformation;
 import alertas.AlertSucess;
 import alertas.AlertWarning;
@@ -26,7 +27,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
+import static principal.Funciones.ruta;
 
 /**
  *
@@ -39,6 +40,8 @@ public class Principal extends javax.swing.JFrame {
     private int contadorNuevo = 0;
     public static boolean creoNuevo = false;
     public static boolean abrioArchivo = false;
+    public static boolean abrir = false;
+   
 
     /**
      * Creates new form Principal
@@ -284,57 +287,67 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
         new Funciones().LeerFichero(this);
+        abrir = true;
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
 
-        //JOptionPane.showInputDialog(null, "");
-        contadorNuevo++;
-        this.lblNombre.setText("Archivo" + contadorNuevo + ".txt");
-        this.txtArea1.setText("");
-        this.txtArea1.setEditable(true);
-        this.txtArea1.requestFocus();
-        creoNuevo = true;
-        abrioArchivo = false;
-        File archivo = new File("archivo.txt");
-        PrintWriter escribir;
-        try {
-            escribir = new PrintWriter(archivo);
-            escribir.print(txtEntrada.getText());
-            escribir.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            Reader lector = new BufferedReader(new FileReader("archivo.txt"));
-            Lexer lexer = new Lexer(lector);
-            String resultado = "";
-            while (true) {
-                Tokens tokens = lexer.yylex();
-                if (tokens == null) {
-                    resultado += "FIN";
-                    txtArea1.setText(resultado);
-                    return;
-                }
-                switch (tokens) {
-                    case ERROR:
-                        resultado += "Simbolo no definido\n";
-                        break;
-                    case Identificador:
-                    case Numero:
-                    case Reservadas:
-                        resultado += lexer.lexeme + ": Es un " + tokens + "\n";
-                        break;
-                    default:
-                        resultado += "Token: " + tokens + "\n";
-                        break;
-                }
+        if (abrir) {
+            //JOptionPane.showInputDialog(null, "");
+            contadorNuevo++;
+            this.lblNombre.setText("Archivo" + contadorNuevo + ".txt");
+            // this.txtArea1.setText("");
+            // this.txtArea1.setEditable(true);
+            this.txtArea1.requestFocus();
+            creoNuevo = true;
+            abrioArchivo = false;
+            File archivo = new File("archivo.txt");
+            PrintWriter escribir;
+            try {
+                escribir = new PrintWriter(archivo);
+                escribir.print(txtArea2.getText());
+                escribir.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+
+            try {
+                Reader lector = new BufferedReader(new FileReader("archivo.txt"));
+                Lexer lexer = new Lexer(lector);
+                String resultado = "";
+                while (true) {
+                    Tokens tokens = lexer.yylex();
+                    if (tokens == null) {
+                        resultado += "---------Analisis Léxico Correctamente---------";
+                        txtArea1.setText(resultado);
+                        return;
+                    }
+                    switch (tokens) {
+                        case ERROR:
+                            resultado +=  tokens + ":   Simbolo no definido\n";
+                            break;
+                        case Identificador:
+                        case Numero:
+                            resultado += lexer.lexeme + ":   Es un " + tokens + "\n";
+                            break;
+                        case Reservadas:
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
+                            break;
+                        default:
+                            resultado += "Token: " + tokens + "\n";
+                            break;
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            AlertError a = new AlertError(this, true);
+            a.lblMensaje1.setText("No hay Texto para analizar");
+            a.lblMensaje2.setText("");
+            a.setVisible(true);
         }
 
 
@@ -346,7 +359,7 @@ public class Principal extends javax.swing.JFrame {
             new Funciones().GuardarFichero(this.txtArea1.getText(), this.lblNombre.getText());
             alertas.AlertSucess a = new AlertSucess(this, true);
             a.lblMensaje1.setText("Se Guardo Correctamene");
-            a.lblMensaje2.setText("");
+            a.lblMensaje2.setText(ruta);
             a.setVisible(true);
         }
         if (creoNuevo) {
@@ -355,7 +368,7 @@ public class Principal extends javax.swing.JFrame {
             new Funciones().GuardarFichero(this.txtArea1.getText(), this.lblNombre.getText());
             alertas.AlertSucess a = new AlertSucess(this, true);
             a.lblMensaje1.setText("Se Guardo Correctamene");
-            a.lblMensaje2.setText("crear un nuevo archivo.");
+            a.lblMensaje2.setText(ruta);
             a.setVisible(true);
         }
         if (!creoNuevo && !abrioArchivo) {
@@ -380,13 +393,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEntradaActionPerformed
-        
+
     }//GEN-LAST:event_txtEntradaActionPerformed
 
-    
-    private void txtAreaMousePressed(java.awt.event.MouseEvent evt) {                                     
-        
-    }   
+    private void txtAreaMousePressed(java.awt.event.MouseEvent evt) {
+
+    }
     private void txtArea2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtArea2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_txtArea2MouseClicked

@@ -1,0 +1,5 @@
+numero: Es un Identificador
+554: Es un Numero
+cadena: Es una Palabra Reservada
+dff: Es un Identificador
+FIN

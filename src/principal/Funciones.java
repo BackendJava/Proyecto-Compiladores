@@ -24,7 +24,8 @@ public class Funciones {
     private File archivo = null;
     private Principal principal;
     public static String ruta = "";
-
+    public String path = "";
+    
     public void LeerFichero(Principal principal) {
         this.principal = principal;
 
@@ -35,6 +36,7 @@ public class Funciones {
         accion.setDialogTitle("Abrir archivo");
         if (accion.showOpenDialog(principal) == JFileChooser.APPROVE_OPTION) {
             archivo = accion.getSelectedFile();
+            path = archivo.getAbsolutePath();
             principal.lblNombre.setText(archivo.getName());
             ruta = accion.getSelectedFile().toString();
             try {
