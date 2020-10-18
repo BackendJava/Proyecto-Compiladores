@@ -41,7 +41,7 @@ public class Principal extends javax.swing.JFrame {
     private int contadorNuevo = 0;
     public static boolean creoNuevo = false;
     public static boolean abrioArchivo = false;
-    public static boolean abrir = false;
+    public static boolean abrir = true;
     private int cont;
    
 
@@ -217,7 +217,6 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 390, 400));
 
-        txtArea2.setEditable(false);
         txtArea2.setColumns(20);
         txtArea2.setRows(5);
         txtArea2.addMouseListener(new java.awt.event.MouseAdapter() {

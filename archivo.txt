@@ -1,9 +1,1 @@
-clase Impar
- propiedades publicas :
-  cadena hola
- metodos publicos :
-  entero esImpar ( entero numero )
-si numero % 2 entonces
-devolver 1
-sino
-devolver 0
+fgdfgfdgfdgf
