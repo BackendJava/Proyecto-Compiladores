@@ -83,6 +83,7 @@ public class Principal extends javax.swing.JFrame {
         txtArea2 = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         Lineas = new javax.swing.JTextArea();
+        btnNuevo1 = new componentes.rsbuttom.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -168,7 +169,7 @@ public class Principal extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 126, 225, 100));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 130, 225, 100));
 
         btnGuardar.setBackground(new java.awt.Color(10, 133, 175));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-guardar.png"))); // NOI18N
@@ -215,7 +216,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(txtArea1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 390, 400));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 620, 390, 70));
 
         txtArea2.setColumns(20);
         txtArea2.setRows(5);
@@ -241,6 +242,20 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3.setViewportView(Lineas);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 30, 420));
+
+        btnNuevo1.setBackground(new java.awt.Color(10, 133, 175));
+        btnNuevo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono.nuevo.png"))); // NOI18N
+        btnNuevo1.setText("Analizar 2");
+        btnNuevo1.setColorBorde(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new javax.swing.ImageIcon(getClass().getResource("/componentes/rsbuttom/border.png")))); // NOI18N
+        btnNuevo1.setColorPressed(new java.awt.Color(0, 153, 204));
+        btnNuevo1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNuevo1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNuevo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevo1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 560, 225, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -454,6 +469,68 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtArea2KeyReleased
 
+    private void btnNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo1ActionPerformed
+
+        if (abrir) {
+            //JOptionPane.showInputDialog(null, "");
+            contadorNuevo++;
+            this.lblNombre.setText("Archivo" + contadorNuevo + ".txt");
+            // this.txtArea1.setText("");
+            // this.txtArea1.setEditable(true);
+            this.txtArea1.requestFocus();
+            creoNuevo = true;
+            abrioArchivo = false;
+            File archivo = new File("archivo.txt");
+            PrintWriter escribir;
+            try {
+                escribir = new PrintWriter(archivo);
+                escribir.print(txtArea2.getText());
+                escribir.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                Reader lector = new BufferedReader(new FileReader("archivo.txt"));
+                Lexer lexer = new Lexer(lector);
+                String resultado = "";
+                while (true) {
+                    Tokens tokens = lexer.yylex();
+                    if (tokens == null) {
+                        resultado += "---------Analisis Léxico Correctamente---------";
+                        txtArea1.setText(resultado);
+                        return;
+                    }
+                    switch (tokens) {
+                        case ERROR:
+                            resultado +=  tokens + ":   Simbolo no definido\n";
+                            break;
+                        case Identificador:
+                        case Numero:
+                            resultado += lexer.lexeme + ":   Es un " + tokens + "\n";
+                            break;
+                        case Reservadas:
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
+                            break;
+                        default:
+                            resultado += "Token: " + tokens + "\n";
+                            break;
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            AlertError a = new AlertError(this, true);
+            a.lblMensaje1.setText("No hay Texto para analizar");
+            a.lblMensaje2.setText("");
+            a.setVisible(true);
+        }
+      
+    }//GEN-LAST:event_btnNuevo1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -508,6 +585,7 @@ public class Principal extends javax.swing.JFrame {
     private componentes.rsbuttom.RSButtonMetro btnGuardar;
     private principal.MaterialButton btnMinimizar;
     private componentes.rsbuttom.RSButtonMetro btnNuevo;
+    private componentes.rsbuttom.RSButtonMetro btnNuevo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
