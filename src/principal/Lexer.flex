@@ -81,9 +81,12 @@ desde {lexeme=yytext(); return Reservadas;}
 
 /*---------------------------------------------------------------------------*/
 
+/*-------------------------------Errores------------------------------------*/
+//("%"|"$")*({L}|{D})* {lexeme=yytext(); return ErrorVariable;}
+/*---------------------------------------------------------------------------*/
 
 
 {L}({L}|{D})* {lexeme=yytext(); return Identificador;}
-{D}({L}|{D})* {lexeme=yytext(); return ErrorVariable;}
+({D}|"$"|"#"|"+"|"-"|"*"|"/"|"!"|"("|")"|"%"|"&"|"<"|">"|"."|","|":"|";"|"{"|"}"|"´"|"¿"|"¡"|"?")*({L}|{D})* {lexeme=yytext(); return ErrorVariable;}
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}
  . {return ERROR;}
