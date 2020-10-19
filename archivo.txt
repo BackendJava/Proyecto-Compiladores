@@ -1,3 +1,1 @@
-cadena numero2
-entero 23valor
-real %7numero
+principal

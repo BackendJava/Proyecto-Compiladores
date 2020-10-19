@@ -11,6 +11,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -141,6 +142,39 @@ public class Funciones {
             /*Captura un posible error y le imprime en pantalla*/
             System.out.println(ex.getMessage());
         }
+    }
+    
+    
+    
+        public static ArrayList<Nodo> getTabla(String txt) {
+        ArrayList<Nodo> tabla = new ArrayList<>();
+        String[] lista = txt.split("\n");
+        String[] aux;
+        for (int x = 0;x < lista.length; x++) {
+            if (lista[x].equals("Simbolo no definido")) {
+                tabla.clear();
+                tabla.add(new Nodo("Simbolo no indefinido",""));
+                return tabla;
+            }
+            aux = lista[x].split("~");
+            if (tabla.size() > 0) {
+                int pos = -1;
+                for (int y = 0; y < tabla.size(); y++) {
+                    if (tabla.get(y).getToken().equals(aux[0])) {
+                        pos = y;
+                    }
+                }
+                if (pos >= 0) {
+                    String lexema = tabla.get(pos).getLexema();
+                    tabla.get(pos).setLexema(lexema + ", " + aux[1]);
+                } else {
+                    tabla.add(new Nodo(aux[0], aux[1]));
+                }
+            } else {
+                tabla.add(new Nodo(aux[0], aux[1]));
+            }
+        }
+        return tabla;
     }
 
 }

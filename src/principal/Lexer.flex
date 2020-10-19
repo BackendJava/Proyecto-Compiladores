@@ -71,6 +71,7 @@ desde {lexeme=yytext(); return Reservadas;}
 "," {return Coma;}
 ";" {return Puntocoma;}
 "!=" {return Distintoque;}
+"." {return Punto;}
 
 
 /*-------------------------------Comentarios-------------------------------*/

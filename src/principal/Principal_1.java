@@ -15,8 +15,8 @@ public class Principal_1 {
 
     public static void main(String[] args) {
 
-        // String ruta = "C:/Users/Yow/Desktop/ProyectoCompiladores/src/principal/Lexer.flex";
-        String ruta = "C:/Users/elmer/Desktop/Proyecto-Compiladores/src/principal/Lexer.flex";
+         String ruta = "C:/Users/Yow/Desktop/ProyectoCompiladores/src/principal/Lexer.flex";
+        //String ruta = "C:/Users/elmer/Desktop/Proyecto-Compiladores/src/principal/Lexer.flex";
 
         generarLexer(ruta);
     }

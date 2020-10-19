@@ -26,5 +26,6 @@ public enum Tokens {
     Exponencial,
     Pabrir,
     Pcerrar,
-    Coma
+    Coma,
+    Punto
 }

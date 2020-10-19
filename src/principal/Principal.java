@@ -29,6 +29,8 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import static principal.Funciones.ruta;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -43,7 +45,7 @@ public class Principal extends javax.swing.JFrame {
     public static boolean abrioArchivo = false;
     public static boolean abrir = true;
     private int cont;
-   
+    DefaultTableModel dtm = new DefaultTableModel();
 
     /**
      * Creates new form Principal
@@ -53,6 +55,9 @@ public class Principal extends javax.swing.JFrame {
         FadeEffect.fadeInFrame(this, 50, 0.1f);
         this.setLocationRelativeTo(this);
         this.setIconImage(new ImageIcon(getClass().getResource("/img/logo.png")).getImage());
+        jTable1.setModel(dtm);
+        dtm.addColumn("Token");
+        dtm.addColumn("Lexema");
 
     }
 
@@ -84,6 +89,8 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         Lineas = new javax.swing.JTextArea();
         btnNuevo1 = new componentes.rsbuttom.RSButtonMetro();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -141,7 +148,7 @@ public class Principal extends javax.swing.JFrame {
 
         lblNombre.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 359, 559, 17));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 559, 17));
 
         btnAbrir.setBackground(new java.awt.Color(10, 133, 175));
         btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-abrir.png"))); // NOI18N
@@ -216,7 +223,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(txtArea1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 430, 400));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 430, 210));
 
         txtArea2.setColumns(20);
         txtArea2.setRows(5);
@@ -235,7 +242,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(txtArea2);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 410, 400));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 410, 480));
 
         Lineas.setColumns(20);
         Lineas.setRows(5);
@@ -256,6 +263,21 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 560, 225, 100));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Token", "Tipo", "Cantidad"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 430, 260));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -479,6 +501,74 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtArea2KeyReleased
 
     private void btnNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo1ActionPerformed
+
+       
+        
+        //JOptionPane.showInputDialog(null, "");
+        
+        //contadorNuevo++;
+        //this.lblNombre.setText("Archivo" + contadorNuevo + ".txt");
+        //this.txtArea1.setText("");
+        //this.txtArea1.setEditable(true);
+        //this.txtArea1.requestFocus();
+        //creoNuevo = true;
+        //abrioArchivo = false;
+        //File archivo = new File("archivo.txt");
+        //PrintWriter escribir;
+        dtm.setRowCount(0);
+        
+     
+        
+        /*try {
+            escribir = new PrintWriter(archivo);
+            escribir.print(txtArea2.getText());
+            escribir.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+*/
+        try {
+            Reader lector = new BufferedReader(new FileReader("archivo.txt"));
+            Lexer lexer = new Lexer(lector);
+            String resultado = "";
+            while (true) {
+                Tokens tokens = lexer.yylex();
+                if (tokens == null) {
+                    ///txtArea1.setText(resultado);
+                    //txtArea1.setVisible(false);
+                    ArrayList<Nodo> tabla = Funciones.getTabla(resultado);
+                    for (int x = 0; x < tabla.size(); x++) {
+                        dtm.addRow(new Object[]{tabla.get(x).getToken(),tabla.get(x).getLexema()});
+                    }
+                    this.setFocusable(true);
+                    return;
+                }
+                switch (tokens) {
+                    case ERROR:
+                        resultado += "Simbolo no definido\n";
+                        break;
+                    case Identificador:
+                    case Numero:
+                    case Reservadas:
+                        resultado += tokens + "~" + lexer.lexeme + "\n";
+                        break;
+                    default:
+                        resultado += "Token~" + tokens + "\n";
+                        break;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+                
+
+
+
+
     }//GEN-LAST:event_btnNuevo1ActionPerformed
 
     /**
@@ -543,6 +633,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable1;
     public static javax.swing.JLabel lblNombre;
     public javax.swing.JTextArea txtArea1;
     public javax.swing.JTextArea txtArea2;
