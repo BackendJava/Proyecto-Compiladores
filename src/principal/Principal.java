@@ -204,7 +204,7 @@ public class Principal extends javax.swing.JFrame {
                 txtEntradaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 144, 860, 49));
+        jPanel1.add(txtEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 144, 850, 49));
 
         txtArea1.setEditable(false);
         txtArea1.setColumns(20);
@@ -216,7 +216,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(txtArea1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 620, 390, 70));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 430, 400));
 
         txtArea2.setColumns(20);
         txtArea2.setRows(5);
@@ -235,7 +235,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(txtArea2);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 450, 400));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 410, 400));
 
         Lineas.setColumns(20);
         Lineas.setRows(5);
@@ -354,8 +354,17 @@ public class Principal extends javax.swing.JFrame {
                         return;
                     }
                     switch (tokens) {
+                        case ComentarioG:
+                            resultado += lexer.lexeme + ": Comentario de Varias lineas\n";
+                            break;
+                        case Comentario:
+                            resultado += lexer.lexeme + ": Comentario de una Linea\n";
+                            break;
+                        case ErrorVariable:
+                            resultado += lexer.lexeme + ": Error variable\n";
+                            break;
                         case ERROR:
-                            resultado +=  tokens + ":   Simbolo no definido\n";
+                            resultado +=  lexer.lexeme + ":   Simbolo no definido\n";
                             break;
                         case Identificador:
                         case Numero:
@@ -470,65 +479,6 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtArea2KeyReleased
 
     private void btnNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo1ActionPerformed
-
-        if (abrir) {
-            //JOptionPane.showInputDialog(null, "");
-            contadorNuevo++;
-            this.lblNombre.setText("Archivo" + contadorNuevo + ".txt");
-            // this.txtArea1.setText("");
-            // this.txtArea1.setEditable(true);
-            this.txtArea1.requestFocus();
-            creoNuevo = true;
-            abrioArchivo = false;
-            File archivo = new File("archivo.txt");
-            PrintWriter escribir;
-            try {
-                escribir = new PrintWriter(archivo);
-                escribir.print(txtArea2.getText());
-                escribir.close();
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            try {
-                Reader lector = new BufferedReader(new FileReader("archivo.txt"));
-                Lexer lexer = new Lexer(lector);
-                String resultado = "";
-                while (true) {
-                    Tokens tokens = lexer.yylex();
-                    if (tokens == null) {
-                        resultado += "---------Analisis Léxico Correctamente---------";
-                        txtArea1.setText(resultado);
-                        return;
-                    }
-                    switch (tokens) {
-                        case ERROR:
-                            resultado +=  tokens + ":   Simbolo no definido\n";
-                            break;
-                        case Identificador:
-                        case Numero:
-                            resultado += lexer.lexeme + ":   Es un " + tokens + "\n";
-                            break;
-                        case Reservadas:
-                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
-                            break;
-                        default:
-                            resultado += "Token: " + tokens + "\n";
-                            break;
-                    }
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            AlertError a = new AlertError(this, true);
-            a.lblMensaje1.setText("No hay Texto para analizar");
-            a.lblMensaje2.setText("");
-            a.setVisible(true);
-        }
-      
     }//GEN-LAST:event_btnNuevo1ActionPerformed
 
     /**

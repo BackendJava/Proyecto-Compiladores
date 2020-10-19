@@ -3,6 +3,9 @@ package principal;
 
 
 public enum Tokens {
+    ComentarioG,
+    Comentario,
+    ErrorVariable,
     Reservadas,
     Igual,
     Suma,

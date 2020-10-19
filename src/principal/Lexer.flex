@@ -54,7 +54,6 @@ estatico |
 
 desde {lexeme=yytext(); return Reservadas;}
 {espacio} {/*Ignore*/}
-"//".* {/*Ignore*/}
 "=" {return Igual;}
 "+" {return Suma;}
 "-" {return Resta;}
@@ -73,6 +72,18 @@ desde {lexeme=yytext(); return Reservadas;}
 ";" {return Puntocoma;}
 "!=" {return Distintoque;}
 
+
+/*-------------------------------Comentarios-------------------------------*/
+
+"//"({D}|{L}|" ")* {lexeme=yytext(); return Comentario;}
+"/*"({D}|{L}|" "|"\n")*"*/" {lexeme=yytext(); return ComentarioG;}
+
+
+/*---------------------------------------------------------------------------*/
+
+
+
 {L}({L}|{D})* {lexeme=yytext(); return Identificador;}
+{D}({L}|{D})* {lexeme=yytext(); return ErrorVariable;}
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}
  . {return ERROR;}
