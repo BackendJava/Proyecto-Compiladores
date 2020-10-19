@@ -386,7 +386,7 @@ public class Principal extends javax.swing.JFrame {
                             resultado += lexer.lexeme + ": Error variable\n";
                             break;
                         case ERROR:
-                            resultado +=  lexer.lexeme + ":   Simbolo no definido\n";
+                            resultado += lexer.lexeme + ":   Simbolo no definido\n";
                             break;
                         case Identificador:
                         case Numero:
@@ -395,6 +395,166 @@ public class Principal extends javax.swing.JFrame {
                         case Reservadas:
                             resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
+                        case Entero:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+                        case Cadena:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+                        case Real:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Boleano:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+                        case Si:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Sino:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Devolver:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+                        case Entonces:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Escribir:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Leer:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Verdadero:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Falso:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case And:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Or:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Incrementar:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Decrementar:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Hacer:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Mientras:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Desde:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Clase:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Propiedades:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Metodos:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Publico:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Privado:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Protegido:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Instanciar:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Extiende:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Incluir:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Constructor:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Principal:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Eliminar:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Destructor:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case CadenaAEntero:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case CadenaAReal:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case CadenaABoleano:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Seno:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Coseno:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Tangente:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Logaritmo:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Raiz:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
+                        case Estatico:
+                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            break;
+
                         default:
                             resultado += "Token: " + tokens + "\n";
                             break;
@@ -484,28 +644,27 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtArea1MousePressed
 
     private void txtArea2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtArea2KeyReleased
-        StringTokenizer st = new StringTokenizer(txtArea2.getText(),"\n",true);
-        String txt = "",token;
+        StringTokenizer st = new StringTokenizer(txtArea2.getText(), "\n", true);
+        String txt = "", token;
         cont = 1;
 
-        while (st.hasMoreTokens()){
-            token= st.nextToken();
-            if("\n".equals(token)) cont++;
+        while (st.hasMoreTokens()) {
+            token = st.nextToken();
+            if ("\n".equals(token)) {
+                cont++;
+            }
         }
 
-        for(int i = 1; i <= cont; i++){
-            txt += i+"\n";
+        for (int i = 1; i <= cont; i++) {
+            txt += i + "\n";
         }
         Lineas.setText(txt);
-        
+
     }//GEN-LAST:event_txtArea2KeyReleased
 
     private void btnNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo1ActionPerformed
 
-       
-        
         //JOptionPane.showInputDialog(null, "");
-        
         //contadorNuevo++;
         //this.lblNombre.setText("Archivo" + contadorNuevo + ".txt");
         //this.txtArea1.setText("");
@@ -516,9 +675,7 @@ public class Principal extends javax.swing.JFrame {
         //File archivo = new File("archivo.txt");
         //PrintWriter escribir;
         dtm.setRowCount(0);
-        
-     
-        
+
         /*try {
             escribir = new PrintWriter(archivo);
             escribir.print(txtArea2.getText());
@@ -526,7 +683,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-*/
+         */
         try {
             Reader lector = new BufferedReader(new FileReader("archivo.txt"));
             Lexer lexer = new Lexer(lector);
@@ -538,7 +695,7 @@ public class Principal extends javax.swing.JFrame {
                     //txtArea1.setVisible(false);
                     ArrayList<Nodo> tabla = Funciones.getTabla(resultado);
                     for (int x = 0; x < tabla.size(); x++) {
-                        dtm.addRow(new Object[]{tabla.get(x).getToken(),tabla.get(x).getLexema()});
+                        dtm.addRow(new Object[]{tabla.get(x).getToken(), tabla.get(x).getLexema()});
                     }
                     this.setFocusable(true);
                     return;
@@ -562,11 +719,6 @@ public class Principal extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-
-                
-
-
 
 
     }//GEN-LAST:event_btnNuevo1ActionPerformed

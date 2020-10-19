@@ -1,9 +1,3 @@
-principal
-or 
-and
-++ -- 
-+ 
--
-int
-entero
-cadena
+numero entero
+cadena valor56
+boleano 54 verdadero

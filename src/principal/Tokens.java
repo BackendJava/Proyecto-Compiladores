@@ -23,6 +23,9 @@ public enum Tokens {
     Mayorque,
     Puntocoma,
     Distintoque,
+   
+    
+    //----------Palabras reservadas-----------
     Exponencial,
     Pabrir,
     Pcerrar,
@@ -68,6 +71,6 @@ public enum Tokens {
     Tangente,
     Logaritmo,
     Raiz,
-    Estatico
+    Estatico,
     
 }

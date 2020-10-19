@@ -135,6 +135,8 @@ espacio=[ ,\t,\r,\n]+
 (estatico) {return Estatico;}
 
 
+/*Tipo de dato Desde*/
+(desde) {return Desde;}
 
 desde {lexeme=yytext(); return Reservadas;}
 {espacio} {/*Ignore*/}
