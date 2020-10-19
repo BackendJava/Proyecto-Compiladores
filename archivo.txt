@@ -1,1 +1,9 @@
 principal
+or 
+and
+++ -- 
++ 
+-
+int
+entero
+cadena
