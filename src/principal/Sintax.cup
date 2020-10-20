@@ -1,0 +1,27 @@
+package principal;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s;
+    
+    public void syntax_error(Symbol s){
+        this.s = s;
+    }
+
+    public Symbol getS(){
+        return this.s;
+}
+:};
+
+terminal Entero, Cadena, Boleano, Real, Pabrir, Pcerrar, Identificador, Igual, Si, Sino, ComentarioG, Comentario,
+    Numero, Error, Principal, ErrorVariable, Devolver, DobleP;
+non terminal INICIO, SENTENCIA, DECLARACION;
+
+start with INICIO;
+
+INICIO ::= 
+    Entero Principal DobleP
+;
+

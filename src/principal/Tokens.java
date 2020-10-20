@@ -3,6 +3,8 @@ package principal;
 
 
 public enum Tokens {
+    DobleP,
+    Linea,
     ComentarioG,
     Comentario,
     ErrorVariable,

@@ -1,3 +1,1 @@
-numero entero
-cadena valor56
-boleano 54 verdadero
+entero principal ()

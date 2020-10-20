@@ -12,6 +12,7 @@ import alertas.AlertSucess;
 import alertas.AlertWarning;
 import alertas.AlertWarningSave;
 import componentes.FadeEffect;
+import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.io.BufferedReader;
@@ -21,6 +22,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +32,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import static principal.Funciones.ruta;
 import java.util.ArrayList;
+import java_cup.runtime.Symbol;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -91,6 +94,9 @@ public class Principal extends javax.swing.JFrame {
         btnNuevo1 = new componentes.rsbuttom.RSButtonMetro();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtArea3 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -242,13 +248,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(txtArea2);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 410, 480));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 410, 210));
 
         Lineas.setColumns(20);
         Lineas.setRows(5);
         jScrollPane3.setViewportView(Lineas);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 30, 420));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 30, 230));
 
         btnNuevo1.setBackground(new java.awt.Color(10, 133, 175));
         btnNuevo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono.nuevo.png"))); // NOI18N
@@ -262,7 +268,7 @@ public class Principal extends javax.swing.JFrame {
                 btnNuevo1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 560, 225, 100));
+        jPanel1.add(btnNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 550, 230, 100));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -278,6 +284,20 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 430, 260));
+
+        txtArea3.setColumns(20);
+        txtArea3.setRows(5);
+        jScrollPane5.setViewportView(txtArea3);
+
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 410, 140));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 610, 140, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -344,7 +364,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-
+        int contador = 1;
         if (abrir) {
             //JOptionPane.showInputDialog(null, "");
             contadorNuevo++;
@@ -367,7 +387,7 @@ public class Principal extends javax.swing.JFrame {
             try {
                 Reader lector = new BufferedReader(new FileReader("archivo.txt"));
                 Lexer lexer = new Lexer(lector);
-                String resultado = "";
+                String resultado = "LINEA " + contador + "\t\tSIMBOLO\n";
                 while (true) {
                     Tokens tokens = lexer.yylex();
                     if (tokens == null) {
@@ -376,6 +396,11 @@ public class Principal extends javax.swing.JFrame {
                         return;
                     }
                     switch (tokens) {
+                        case Linea:
+                            contador++;
+                            resultado += "LINEA " + contador + "\n";
+
+                            break;
                         case ComentarioG:
                             resultado += lexer.lexeme + ": Comentario de Varias lineas\n";
                             break;
@@ -389,176 +414,181 @@ public class Principal extends javax.swing.JFrame {
                             resultado += lexer.lexeme + ":   Simbolo no definido\n";
                             break;
                         case Identificador:
+                            resultado += lexer.lexeme + ":   Es un Identificador xd\n";
+                            break;
                         case Numero:
-                            resultado += lexer.lexeme + ":   Es un " + tokens + "\n";
+                            resultado +=  lexer.lexeme + ":   Es un " + tokens + "\n";
+                            break;
+                        case Real:
+                            resultado +=  lexer.lexeme + ":   Es un " + tokens + "\n";
                             break;
                         case Reservadas:
                             resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
                         case Entero:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
                         case Cadena:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
-                        case Real:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
-                            break;
+                      
 
                         case Boleano:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
                         case Si:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Sino:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Devolver:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
                         case Entonces:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Escribir:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Leer:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Verdadero:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Falso:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case And:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Or:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Incrementar:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Decrementar:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Hacer:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Mientras:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Desde:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Clase:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Propiedades:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Metodos:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Publico:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Privado:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Protegido:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Instanciar:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Extiende:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Incluir:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Constructor:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Principal:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Eliminar:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Destructor:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case CadenaAEntero:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case CadenaAReal:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case CadenaABoleano:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Seno:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Coseno:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Tangente:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Logaritmo:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Raiz:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         case Estatico:
-                            resultado += tokens + ":   Es una Palabra Reservada" + "\n";
+                            resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
                         default:
-                            resultado += "Token: " + tokens + "\n";
+                            resultado += "Token: " + lexer.lexeme + "\n";
                             break;
+                            
                     }
+                    
                 }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -723,6 +753,22 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnNuevo1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String ST = txtArea2.getText();
+        Sintax s = new Sintax(new principal.LexerCup(new StringReader(ST)));
+        
+        try {
+            s.parse();
+            s.action_table();
+            txtArea3.setText("Analisis realizado correctamente");
+            txtArea3.setForeground(new Color(25, 111, 61));
+        } catch (Exception ex) {
+            Symbol sym = s.getS();
+            txtArea3.setText("Error de sintaxis. Linea: " + (sym.right + 1) + " Columna: " + (sym.left + 1) + ", Texto: \"" + sym.value + "\"");
+            txtArea3.setForeground(Color.red);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -778,6 +824,7 @@ public class Principal extends javax.swing.JFrame {
     private principal.MaterialButton btnMinimizar;
     private componentes.rsbuttom.RSButtonMetro btnNuevo;
     private componentes.rsbuttom.RSButtonMetro btnNuevo1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -786,10 +833,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     public static javax.swing.JLabel lblNombre;
     public javax.swing.JTextArea txtArea1;
     public javax.swing.JTextArea txtArea2;
+    private javax.swing.JTextArea txtArea3;
     private javax.swing.JTextField txtEntrada;
     // End of variables declaration//GEN-END:variables
 }
