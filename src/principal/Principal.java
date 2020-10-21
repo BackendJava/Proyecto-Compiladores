@@ -777,6 +777,9 @@ public class Principal extends javax.swing.JFrame {
         txtArea1.setText("");
         txtArea2.setText("");
         txtArea3.setText("");
+        
+        /////
+        /////
              
     }//GEN-LAST:event_btnEliminar1ActionPerformed
 
