@@ -32,7 +32,7 @@ public class Funciones {
 
         accion = new JFileChooser();
         accion.setFileSelectionMode(0);
-        FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("TXT", "txt");
+        FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("TXT", "txt","loop");
         accion.setFileFilter(filtroImagen);
         accion.setDialogTitle("Abrir archivo");
         if (accion.showOpenDialog(principal) == JFileChooser.APPROVE_OPTION) {

@@ -171,12 +171,14 @@ desde {lexeme=yytext(); return Reservadas;}
 
 /*------------------------------Funciones -----------------------------*/
 /*FUNCIONES*/
-("entero"|"real"|"cadena"|"boleano")(" ")({L})(({letra}|{D}|"_"|{LETRA})*)("(")(")") {lexeme=yytext(); return IdentificadorFuncion;}
+("entero"|"real"|"cadena"|"boleano")(" ")({letra})(({letra}|{D}|"_"|{LETRA})*)("(")(")") {lexeme=yytext(); return IdentificadorFuncion;}
 ("entero"|"real"|"cadena"|"boleano")(" ")(({D}|"_"|.|"á"|"é"|"í"|"ó"|"ú")*)("(")(")") {lexeme=yytext(); return ErrorIdentificadorFuncion;}
+{letra}(".")({letra}({L}|{D}|"_")*)("(")(")") {lexeme=yytext(); return IdentificadorFuncion;}
+("entero"|"real"|"cadena"|"boleano")(" ")({letra})(({letra}|{D}|"_"|{LETRA})*)("(")("entero"|"real"|"cadena"|"boleano")(" ")({D}|{L}|"_")*(")") {lexeme=yytext(); return IdentificadorFuncion;}
 
 /*------------------------------Variables -----------------------------*/
 ("entero"|"real"|"cadena"|"boleano")(" ")({L})(({L}|{D}|"_"|","|" ")*) {lexeme=yytext(); return IdentificadorVariable;}
-//("entero"|"real"|"cadena"|"boleano")(" "){D}* {lexeme=yytext(); return ErrorIdentificadorVariable;}
+("entero"|"real"|"cadena"|"boleano")(" "){D}* {lexeme=yytext(); return ErrorIdentificadorVariable;}
 /*-------------------------------Comentarios-------------------------------*/
 "//"({D}|{L}|" ")* {lexeme=yytext(); return Comentario;}
 "/*"({D}|{L}|" "|"\n")*"*/" {lexeme=yytext(); return ComentarioG;}

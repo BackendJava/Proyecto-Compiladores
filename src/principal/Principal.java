@@ -82,7 +82,7 @@ public class Principal extends javax.swing.JFrame {
         lblNombre = new javax.swing.JLabel();
         btnAbrir = new componentes.rsbuttom.RSButtonMetro();
         btnNuevo = new componentes.rsbuttom.RSButtonMetro();
-        btnGuardar = new componentes.rsbuttom.RSButtonMetro();
+        btnGuardar1 = new componentes.rsbuttom.RSButtonMetro();
         btnEliminar = new componentes.rsbuttom.RSButtonMetro();
         txtEntrada = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -98,6 +98,7 @@ public class Principal extends javax.swing.JFrame {
         txtArea3 = new javax.swing.JTextArea();
         btnEliminar1 = new componentes.rsbuttom.RSButtonMetro();
         btnNuevo2 = new componentes.rsbuttom.RSButtonMetro();
+        btnGuardar = new componentes.rsbuttom.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -185,19 +186,19 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 130, 225, 100));
 
-        btnGuardar.setBackground(new java.awt.Color(10, 133, 175));
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-guardar.png"))); // NOI18N
-        btnGuardar.setText("Guardar");
-        btnGuardar.setColorBorde(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new javax.swing.ImageIcon(getClass().getResource("/componentes/rsbuttom/border.png")))); // NOI18N
-        btnGuardar.setColorPressed(new java.awt.Color(0, 153, 204));
-        btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar1.setBackground(new java.awt.Color(10, 133, 175));
+        btnGuardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-guardar.png"))); // NOI18N
+        btnGuardar1.setText("Guardar");
+        btnGuardar1.setColorBorde(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new javax.swing.ImageIcon(getClass().getResource("/componentes/rsbuttom/border.png")))); // NOI18N
+        btnGuardar1.setColorPressed(new java.awt.Color(0, 153, 204));
+        btnGuardar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGuardar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnGuardar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 338, 225, 100));
+        jPanel1.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 610, 90, 90));
 
         btnEliminar.setBackground(new java.awt.Color(10, 133, 175));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-eliminar.png"))); // NOI18N
@@ -319,6 +320,20 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnNuevo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 610, 90, 90));
+
+        btnGuardar.setBackground(new java.awt.Color(10, 133, 175));
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-guardar.png"))); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.setColorBorde(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new javax.swing.ImageIcon(getClass().getResource("/componentes/rsbuttom/border.png")))); // NOI18N
+        btnGuardar.setColorPressed(new java.awt.Color(0, 153, 204));
+        btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 338, 225, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -625,19 +640,13 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (abrioArchivo) {
-            System.out.println("Existente");
-            new Funciones().GuardarFichero(this.txtArea1.getText(), this.lblNombre.getText());
-            alertas.AlertSucess a = new AlertSucess(this, true);
-            a.lblMensaje1.setText("Se Guardo Correctamene");
-            a.lblMensaje2.setText(ruta);
-            a.setVisible(true);
-        }
+    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+        
+        
         if (creoNuevo) {
             System.out.println("Nuevo");
-            new Funciones().CrearFicheroNuevo(this, this.txtArea1.getText(), this.lblNombre.getText());
-            new Funciones().GuardarFichero(this.txtArea1.getText(), this.lblNombre.getText());
+            new Funciones().CrearFicheroNuevo(this, this.txtArea3.getText(), this.lblNombre.getText());
+            new Funciones().GuardarFichero(this.txtArea3.getText(), this.lblNombre.getText());
             alertas.AlertSucess a = new AlertSucess(this, true);
             a.lblMensaje1.setText("Se Guardo Correctamene");
             a.lblMensaje2.setText(ruta);
@@ -649,7 +658,7 @@ public class Principal extends javax.swing.JFrame {
             a.lblMensaje2.setText("para poder guardarlo.");
             a.setVisible(true);
         }
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_btnGuardar1ActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (abrioArchivo) {
@@ -777,10 +786,10 @@ public class Principal extends javax.swing.JFrame {
         txtArea1.setText("");
         txtArea2.setText("");
         txtArea3.setText("");
-        
+
         /////
         /////
-             
+
     }//GEN-LAST:event_btnEliminar1ActionPerformed
 
     private void btnNuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo2ActionPerformed
@@ -848,7 +857,7 @@ public class Principal extends javax.swing.JFrame {
                         case ErrorIdentificadorClase:
                             //resultado2 += "LINEA " + contador + "\n";
                             //resultado2 += lexer.lexeme + ":Error" + "\n";
-                            
+
                             a.lblMensaje1.setText("LINEA " + contador + "\n");
                             a.lblMensaje2.setText(lexer.lexeme + ": Error Clase" + "\n");
                             a.setVisible(true);
@@ -886,8 +895,35 @@ public class Principal extends javax.swing.JFrame {
             a.lblMensaje2.setText("");
             a.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_btnNuevo2ActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
+        if (abrioArchivo) {
+            System.out.println("Existente");
+            new Funciones().GuardarFichero(this.txtArea1.getText(), "Tokens.txt");
+            alertas.AlertSucess a = new AlertSucess(this, true);
+            a.lblMensaje1.setText("Se Guardo Correctamene");
+            a.lblMensaje2.setText(ruta);
+            a.setVisible(true);
+        }
+        if (creoNuevo) {
+            System.out.println("Nuevo");
+            new Funciones().CrearFicheroNuevo(this, this.txtArea1.getText(), this.lblNombre.getText());
+            new Funciones().GuardarFichero(this.txtArea1.getText(), this.lblNombre.getText());
+            alertas.AlertSucess a = new AlertSucess(this, true);
+            a.lblMensaje1.setText("Se Guardo Correctamene");
+            a.lblMensaje2.setText(ruta);
+            a.setVisible(true);
+        }
+        if (!creoNuevo && !abrioArchivo) {
+            alertas.AlertInformation a = new AlertInformation(this, true);
+            a.lblMensaje1.setText("Debes crear o abrir un archvo");
+            a.lblMensaje2.setText("para poder guardarlo.");
+            a.setVisible(true);
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -942,6 +978,7 @@ public class Principal extends javax.swing.JFrame {
     private componentes.rsbuttom.RSButtonMetro btnEliminar;
     private componentes.rsbuttom.RSButtonMetro btnEliminar1;
     private componentes.rsbuttom.RSButtonMetro btnGuardar;
+    private componentes.rsbuttom.RSButtonMetro btnGuardar1;
     private principal.MaterialButton btnMinimizar;
     private componentes.rsbuttom.RSButtonMetro btnNuevo;
     private componentes.rsbuttom.RSButtonMetro btnNuevo1;

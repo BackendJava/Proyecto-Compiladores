@@ -81,10 +81,10 @@ espacio=[ ,\t,\r]+
 (metodos) {lexeme=yytext(); return Metodos;}
 
 /* Tipo de dato Publico*/
-(publicas) {lexeme=yytext(); return Publicas;}
+(publicas:) {lexeme=yytext(); return Publicas;}
 
 /* Tipo de dato Privado*/
-(privado) {lexeme=yytext(); return Privado;}
+(privadas:) {lexeme=yytext(); return Privado;}
 
 /* Tipo de dato Protegido*/
 (protegido) {lexeme=yytext(); return Protegido;}
@@ -165,8 +165,8 @@ desde {lexeme=yytext(); return Reservadas;}
 
 /*-------------------------------Comentarios-------------------------------*/
 
-"//"({D}|{L}|" ")* {lexeme=yytext(); return Comentario;}
-"/*"({D}|{L}|" "|"\n")*"*/" {lexeme=yytext(); return ComentarioG;}
+"//"({D}|{L}|" "|"á"|"é"|"í"|"ó"|"ú")*("\n") {lexeme=yytext(); return Comentario;}
+"/*"({D}|{L}|" "|"\n"|"á"|"é"|"í"|"ó"|"ú")*"*/" {lexeme=yytext(); return ComentarioG;}
 
 
 /*---------------------------------------------------------------------------*/

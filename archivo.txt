@@ -1,30 +1,38 @@
-/* area de inclusion de bibliotecas externas */
-// ninguna libreria que cargar
+/* área de inclusión de bibliotecas externas */
+// ninguna librería que cargar
 
-/* area de declaracion de clases */
+/* área de declaración de clases */
 clase Impar
-    propiedades publicas :
+  propiedades privadas:
+  propiedades publicas:
     cadena hola
-    metodos publicos : 
-        entero esImpar ( entero numero )
-        si numero % 2 entonces
-        devolver 1
-        sino
-        devolver 0
+  metodos publicos:
+    entero esImpar(entero numero)
+      si numero % 2 entonces
+        devolver 1;
+      sino 
+        devolver 0;
+  metodos privados:
+  
 
 clase HolaMundo
-    propiedades privadas:
-        entero a
-        cadena nombre
-        Impar i:
-        metodos publicos :
-    constructor ()
-        i = nuevo Impar ()
-        a = 0
-        nombre = ' '
+  propiedades privadas:
+    entero a
+    cadena nombre
+    Impar i
+  metodos publicos:
+    constructor()
+      i = nuevo Impar()
+      a = 0
+      nombre = ""
 
-entero inicio()
-    escribir ' escriba su nombre '
-    // se guarda una cadena de texto en la variable nombre
-    leer nombre ;
-    escribir ' escriba un valor entre 1 y 30 '
+/* área de declaración de función de carga inicial */
+entero Principal()
+  HolaMundo hola = instanciar HolaMundo()
+  hola.inicio()
+  devolver 0
+  desde i mientras i > 5 decrementar 2 hacer
+    escribir i
+    hacer
+        a =5+ b
+    mientras a < 10
