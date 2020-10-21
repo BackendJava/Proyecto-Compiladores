@@ -24,15 +24,18 @@ public class Principal_1 {
         // String ruta1 = "C:/Users/Yow/Documents/GitHub/Proyecto-Compiladores/src/principal/Lexer.flex";
         String ruta1 = "C:/Users/elmer/Desktop/Proyecto-Compiladores/src/principal/Lexer.flex";
         String ruta2 = "C:/Users/elmer/Desktop/Proyecto-Compiladores/src/principal/LexerCup.flex";
+        String ruta3 = "C:/Users/elmer/Desktop/Proyecto-Compiladores/src/principal/LexerNombre.flex";
         String[] rutaS = {"-parser", "Sintax", "C:/Users/elmer/Desktop/Proyecto-Compiladores/src/principal/Sintax.cup"};
-        generar(ruta1,ruta2,rutaS);
+        generar(ruta1,ruta2,ruta3,rutaS);
     }
 
-    public static void generar(String ruta1, String ruta2, String[] rutaS) throws IOException, Exception {
+    public static void generar(String ruta1, String ruta2,String ruta3, String[] rutaS) throws IOException, Exception {
         File archivo;
         archivo = new File(ruta1);
         JFlex.Main.generate(archivo);
         archivo = new File(ruta2);
+        JFlex.Main.generate(archivo);
+        archivo = new File(ruta3);
         JFlex.Main.generate(archivo);
         java_cup.Main.main(rutaS);
 

@@ -3,6 +3,23 @@ package principal;
 
 
 public enum Tokens {
+    
+    /*------------Asignaciones ------------*/
+    GUION,
+    ESPACIO,
+    //tipoF,
+    /*-----------Clase ------------------*/
+    IdentificadorClase,
+    ErrorIdentificadorClase,
+    
+    /*------------funcioon ------------------*/
+    IdentificadorFuncion,
+    ErrorIdentificadorFuncion,
+    
+    /*-----------Variables------------------*/
+    IdentificadorVariable,
+    ErrorIdentificadorVariable,
+    
     DobleP,
     Linea,
     ComentarioG,
@@ -55,7 +72,7 @@ public enum Tokens {
     Clase,
     Propiedades,
     Metodos,
-    Publico,
+    Publicas,
     Privado,
     Protegido,
     Instanciar,

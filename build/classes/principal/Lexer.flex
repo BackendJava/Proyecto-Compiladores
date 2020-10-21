@@ -5,6 +5,8 @@ import static principal.Tokens.*;
 %type Tokens
 L=[a-zA-Z_]+
 D=[0-9]+
+LETRA=[A-Z]+
+letra=[a-z]+
 espacio=[ ,\t,\r]+
 %{
     public String lexeme;
@@ -79,7 +81,7 @@ espacio=[ ,\t,\r]+
 (metodos) {lexeme=yytext(); return Metodos;}
 
 /* Tipo de dato Publico*/
-(publico) {lexeme=yytext(); return Publico;}
+(publicas) {lexeme=yytext(); return Publicas;}
 
 /* Tipo de dato Privado*/
 (privado) {lexeme=yytext(); return Privado;}
@@ -161,6 +163,7 @@ desde {lexeme=yytext(); return Reservadas;}
 "." {lexeme=yytext(); return Punto;}
 
 
+
 /*-------------------------------Comentarios-------------------------------*/
 
 "//"({D}|{L}|" ")* {lexeme=yytext(); return Comentario;}
@@ -174,12 +177,14 @@ desde {lexeme=yytext(); return Reservadas;}
 
 /*---------------------------------------------------------------------------*/
 
+/*-------------------------------Declaracion Variables ----------------------*/
+{L}({L}|{D}|"_")* {lexeme=yytext(); return Identificador;}
 
-{L}({L}|{D})* {lexeme=yytext(); return Identificador;}
+/*---------------------------------------------------------------------------*/
 
 {D}* {lexeme=yytext(); return Numero;}
 ("-"{D}*)|({D}*) {lexeme=yytext(); return Numero;}
 ("-"{D}*"."{D}*)|({D}*"."{D}*) {lexeme=yytext(); return Real;}
-({D}|"$"|"#"|"+"|"-"|"*"|"/"|"!"|"("|")"|"%"|"&"|"<"|">"|"."|","|":"|";"|"{"|"}"|"´"|"¿"|"¡"|"?")*({L}|{D})* {lexeme=yytext(); return ErrorVariable;}
+("á"|"é"|"í"|"ó"|"ú"|{D}|"$"|"#"|"+"|"-"|"*"|"/"|"!"|"("|")"|"%"|"&"|"<"|">"|"."|":"|";"|"{"|"}"|"´"|"¿"|"¡"|"?"|"á"|"é"|"í"|"ó"|"ú"|{L}|{D})* {lexeme=yytext(); return ErrorVariable;}
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}
  . {lexeme=yytext(); return ERROR;}

@@ -14,7 +14,7 @@ clase Impar
 
 clase HolaMundo
     propiedades privadas:
-        entero a,b
+        entero a
         cadena nombre
         Impar i:
         metodos publicos :
@@ -23,7 +23,7 @@ clase HolaMundo
         a = 0
         nombre = ' '
 
-entero inicio()
+entero inicio ()
     escribir ' escriba su nombre '
     // se guarda una cadena de texto en la variable nombre
     leer nombre ;

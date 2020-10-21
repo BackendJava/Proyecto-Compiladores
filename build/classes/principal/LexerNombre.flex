@@ -1,7 +1,7 @@
 package principal;
 import static principal.Tokens.*;
 %%
-%class Lexer
+%class LexerNombre
 %type Tokens
 L=[a-zA-Z_]+
 D=[0-9]+
@@ -13,6 +13,7 @@ espacio=[ ,\t,\r]+
 %}
 %%
 "\n" {return Linea;}
+
 
 /* Tipo de dato Entero*/
 (entero) {lexeme=yytext(); return Entero;}
@@ -163,9 +164,20 @@ desde {lexeme=yytext(); return Reservadas;}
 "." {lexeme=yytext(); return Punto;}
 
 
+/*-------------------------------Clase-------------------------------*/
 
+"clase"(" "){LETRA}(({letra}|{D}|"_"|{LETRA})*) {lexeme=yytext(); return IdentificadorClase;}
+"clase"(" ")(({letra}|{D}|"_"|{LETRA}|"á"|"é"|"í"|"ó"|"ú")*) {lexeme=yytext(); return ErrorIdentificadorClase;}
+
+/*------------------------------Funciones -----------------------------*/
+/*FUNCIONES*/
+("entero"|"real"|"cadena"|"boleano")(" ")({L})(({letra}|{D}|"_"|{LETRA})*)("(")(")") {lexeme=yytext(); return IdentificadorFuncion;}
+("entero"|"real"|"cadena"|"boleano")(" ")(({D}|"_"|.|"á"|"é"|"í"|"ó"|"ú")*)("(")(")") {lexeme=yytext(); return ErrorIdentificadorFuncion;}
+
+/*------------------------------Variables -----------------------------*/
+("entero"|"real"|"cadena"|"boleano")(" ")({L})(({L}|{D}|"_"|","|" ")*) {lexeme=yytext(); return IdentificadorVariable;}
+//("entero"|"real"|"cadena"|"boleano")(" "){D}* {lexeme=yytext(); return ErrorIdentificadorVariable;}
 /*-------------------------------Comentarios-------------------------------*/
-
 "//"({D}|{L}|" ")* {lexeme=yytext(); return Comentario;}
 "/*"({D}|{L}|" "|"\n")*"*/" {lexeme=yytext(); return ComentarioG;}
 
@@ -185,6 +197,7 @@ desde {lexeme=yytext(); return Reservadas;}
 {D}* {lexeme=yytext(); return Numero;}
 ("-"{D}*)|({D}*) {lexeme=yytext(); return Numero;}
 ("-"{D}*"."{D}*)|({D}*"."{D}*) {lexeme=yytext(); return Real;}
-("á"|"é"|"í"|"ó"|"ú"|{D}|"$"|"#"|"+"|"-"|"*"|"/"|"!"|"("|")"|"%"|"&"|"<"|">"|"."|":"|";"|"{"|"}"|"´"|"¿"|"¡"|"?"|"á"|"é"|"í"|"ó"|"ú"|{L}|{D})* {lexeme=yytext(); return ErrorVariable;}
+({D}|"$"|"#"|"+"|"-"|"*"|"/"|"!"|"("|")"|"%"|"&"|"<"|">"|"."|","|":"|";"|"{"|"}"|"´"|"¿"|"¡"|"?")*({L}|{D})* {lexeme=yytext(); return ErrorVariable;}
 ("(-"{D}+")")|{D}+ {lexeme=yytext(); return Numero;}
  . {lexeme=yytext(); return ERROR;}
+

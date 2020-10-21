@@ -96,7 +96,7 @@ public class Principal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         txtArea3 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        Analizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -248,13 +248,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(txtArea2);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 410, 210));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 410, 240));
 
         Lineas.setColumns(20);
         Lineas.setRows(5);
         jScrollPane3.setViewportView(Lineas);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 30, 230));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 40, 250));
 
         btnNuevo1.setBackground(new java.awt.Color(10, 133, 175));
         btnNuevo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono.nuevo.png"))); // NOI18N
@@ -289,15 +289,15 @@ public class Principal extends javax.swing.JFrame {
         txtArea3.setRows(5);
         jScrollPane5.setViewportView(txtArea3);
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 410, 140));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, 410, 140));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Analizar.setText("Analizar");
+        Analizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AnalizarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 610, 140, 50));
+        jPanel1.add(Analizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 610, 110, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -387,12 +387,14 @@ public class Principal extends javax.swing.JFrame {
             try {
                 Reader lector = new BufferedReader(new FileReader("archivo.txt"));
                 Lexer lexer = new Lexer(lector);
+                String resultado2 = "";
                 String resultado = "LINEA " + contador + "\t\tSIMBOLO\n";
                 while (true) {
                     Tokens tokens = lexer.yylex();
                     if (tokens == null) {
                         resultado += "---------Analisis Léxico Correctamente---------";
                         txtArea1.setText(resultado);
+                        txtArea3.setText(resultado2);
                         return;
                     }
                     switch (tokens) {
@@ -414,13 +416,13 @@ public class Principal extends javax.swing.JFrame {
                             resultado += lexer.lexeme + ":   Simbolo no definido\n";
                             break;
                         case Identificador:
-                            resultado += lexer.lexeme + ":   Es un Identificador xd\n";
+                            resultado += lexer.lexeme + ":   Es un Identificador \n";
                             break;
                         case Numero:
-                            resultado +=  lexer.lexeme + ":   Es un " + tokens + "\n";
+                            resultado += lexer.lexeme + ":   Es un " + tokens + "\n";
                             break;
                         case Real:
-                            resultado +=  lexer.lexeme + ":   Es un " + tokens + "\n";
+                            resultado += lexer.lexeme + ":   Es un " + tokens + "\n";
                             break;
                         case Reservadas:
                             resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
@@ -431,7 +433,6 @@ public class Principal extends javax.swing.JFrame {
                         case Cadena:
                             resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
-                      
 
                         case Boleano:
                             resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
@@ -507,7 +508,7 @@ public class Principal extends javax.swing.JFrame {
                             resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
-                        case Publico:
+                        case Publicas:
                             resultado += lexer.lexeme + ":   Es una Palabra Reservada" + "\n";
                             break;
 
@@ -586,9 +587,9 @@ public class Principal extends javax.swing.JFrame {
                         default:
                             resultado += "Token: " + lexer.lexeme + "\n";
                             break;
-                            
+
                     }
-                    
+
                 }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -753,21 +754,110 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnNuevo1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String ST = txtArea2.getText();
-        Sintax s = new Sintax(new principal.LexerCup(new StringReader(ST)));
-        
-        try {
-            s.parse();
-            s.action_table();
-            txtArea3.setText("Analisis realizado correctamente");
-            txtArea3.setForeground(new Color(25, 111, 61));
-        } catch (Exception ex) {
-            Symbol sym = s.getS();
-            txtArea3.setText("Error de sintaxis. Linea: " + (sym.right + 1) + " Columna: " + (sym.left + 1) + ", Texto: \"" + sym.value + "\"");
-            txtArea3.setForeground(Color.red);
+    private void AnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalizarActionPerformed
+//        String ST = txtArea2.getText();
+//        Sintax s = new Sintax(new principal.LexerCup(new StringReader(ST)));
+//        
+//        try {
+//            s.parse();
+//            s.action_table();
+//            txtArea3.setText("Analisis realizado correctamente");
+//            txtArea3.setForeground(new Color(25, 111, 61));
+//        } catch (Exception ex) {
+//            Symbol sym = s.getS();
+//            txtArea3.setText("Error de sintaxis. Linea: " + (sym.right + 1) + " Columna: " + (sym.left + 1) + ", Texto: \"" + sym.value + "\"");
+//            txtArea3.setForeground(Color.red);
+//        }
+
+        int contador = 1;
+        alertas.AlertError a = new AlertError(this, true);
+        if (abrir) {
+            //JOptionPane.showInputDialog(null, "");
+            contadorNuevo++;
+            this.lblNombre.setText("Archivo" + contadorNuevo + ".txt");
+            // this.txtArea1.setText("");
+            // this.txtArea1.setEditable(true);
+            this.txtArea3.requestFocus();
+            creoNuevo = true;
+            abrioArchivo = false;
+            File archivo = new File("archivo.txt");
+            PrintWriter escribir;
+            try {
+                escribir = new PrintWriter(archivo);
+                escribir.print(txtArea2.getText());
+                escribir.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                Reader lector = new BufferedReader(new FileReader("archivo.txt"));
+                LexerNombre lexer = new LexerNombre(lector);
+
+                String resultado2 = "";
+                while (true) {
+                    Tokens tokens = lexer.yylex();
+                    if (tokens == null) {
+                        resultado2 += "---------Analisis Léxico Correctamente---------";
+                        //txtArea1.setText(resultado);
+                        txtArea3.setText(resultado2);
+                        return;
+                    }
+                    switch (tokens) {
+
+                        case Linea:
+                            contador++;
+
+                            break;
+                        case IdentificadorClase:
+                            resultado2 += "LINEA " + contador + "\n";
+                            resultado2 += lexer.lexeme + ": \tClase Correcta" + "\n";
+
+                            break;
+
+                        case ErrorIdentificadorClase:
+                            //resultado2 += "LINEA " + contador + "\n";
+                            //resultado2 += lexer.lexeme + ":Error" + "\n";
+                            
+                            a.lblMensaje1.setText("LINEA " + contador + "\n");
+                            a.lblMensaje2.setText(lexer.lexeme + ": Error Clase" + "\n");
+                            a.setVisible(true);
+                            break;
+
+                        case IdentificadorFuncion:
+                            resultado2 += "LINEA " + contador + "\n";
+                            resultado2 += lexer.lexeme + ": \tFuncion" + "\n";
+
+                            break;
+                        case ErrorIdentificadorFuncion:
+                            a.lblMensaje1.setText("LINEA " + contador + "\n");
+                            a.lblMensaje2.setText(lexer.lexeme + ": Error Funcion" + "\n");
+                            a.setVisible(true);
+                            break;
+                        case IdentificadorVariable:
+                            resultado2 += "LINEA " + contador + "\n";
+                            resultado2 += lexer.lexeme + ": \t Variable Correcta" + "\n";
+                            break;
+                        case ErrorIdentificadorVariable:
+                            a.lblMensaje1.setText("LINEA " + contador + "\n");
+                            a.lblMensaje2.setText(lexer.lexeme + ": Error Variable" + "\n");
+                            a.setVisible(true);
+                            break;
+                    }
+
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            a.lblMensaje1.setText("No hay Texto para analizar");
+            a.lblMensaje2.setText("");
+            a.setVisible(true);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_AnalizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -816,6 +906,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Analizar;
     private javax.swing.JTextArea Lineas;
     private componentes.rsbuttom.RSButtonMetro btnAbrir;
     private principal.MaterialButton btnCerrar;
@@ -824,7 +915,6 @@ public class Principal extends javax.swing.JFrame {
     private principal.MaterialButton btnMinimizar;
     private componentes.rsbuttom.RSButtonMetro btnNuevo;
     private componentes.rsbuttom.RSButtonMetro btnNuevo1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
