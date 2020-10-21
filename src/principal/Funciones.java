@@ -152,9 +152,9 @@ public class Funciones {
         String[] aux;
         for (int x = 0;x < lista.length; x++) {
             if (lista[x].equals("Simbolo no definido")) {
-                tabla.clear();
-                tabla.add(new Nodo("Simbolo no indefinido",""));
-                return tabla;
+                //tabla.clear();
+                //tabla.add(new Nodo("Simbolo no indefinido",""));
+                //return tabla;
             }
             aux = lista[x].split("~");
             if (tabla.size() > 0) {

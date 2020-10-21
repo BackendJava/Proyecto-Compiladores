@@ -14,7 +14,7 @@ clase Impar
 
 clase HolaMundo
     propiedades privadas:
-        entero a,b
+        entero a
         cadena nombre
         Impar i:
         metodos publicos :

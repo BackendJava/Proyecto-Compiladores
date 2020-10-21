@@ -96,7 +96,8 @@ public class Principal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         txtArea3 = new javax.swing.JTextArea();
-        Analizar = new javax.swing.JButton();
+        btnEliminar1 = new componentes.rsbuttom.RSButtonMetro();
+        btnNuevo2 = new componentes.rsbuttom.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -210,7 +211,7 @@ public class Principal extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 444, 225, 100));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 440, 225, 100));
 
         txtEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,13 +292,33 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, 410, 140));
 
-        Analizar.setText("Analizar");
-        Analizar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar1.setBackground(new java.awt.Color(10, 133, 175));
+        btnEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-eliminar.png"))); // NOI18N
+        btnEliminar1.setText("Clean All");
+        btnEliminar1.setColorBorde(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new javax.swing.ImageIcon(getClass().getResource("/componentes/rsbuttom/border.png")))); // NOI18N
+        btnEliminar1.setColorPressed(new java.awt.Color(0, 153, 204));
+        btnEliminar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEliminar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEliminar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AnalizarActionPerformed(evt);
+                btnEliminar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Analizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 610, 110, 50));
+        jPanel1.add(btnEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 610, 90, 90));
+
+        btnNuevo2.setBackground(new java.awt.Color(10, 133, 175));
+        btnNuevo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono.nuevo.png"))); // NOI18N
+        btnNuevo2.setText("Analizar 3");
+        btnNuevo2.setColorBorde(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new javax.swing.ImageIcon(getClass().getResource("/componentes/rsbuttom/border.png")))); // NOI18N
+        btnNuevo2.setColorPressed(new java.awt.Color(0, 153, 204));
+        btnNuevo2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNuevo2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNuevo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevo2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnNuevo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 610, 90, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -307,9 +328,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
         );
 
         pack();
@@ -732,9 +751,7 @@ public class Principal extends javax.swing.JFrame {
                     return;
                 }
                 switch (tokens) {
-                    case ERROR:
-                        resultado += "Simbolo no definido\n";
-                        break;
+                    case ErrorVariable:
                     case Identificador:
                     case Numero:
                     case Reservadas:
@@ -754,8 +771,18 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnNuevo1ActionPerformed
 
-    private void AnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalizarActionPerformed
-//        String ST = txtArea2.getText();
+    private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
+        // TODO add your handling code here:
+        dtm.setRowCount(0);
+        txtArea1.setText("");
+        txtArea2.setText("");
+        txtArea3.setText("");
+             
+    }//GEN-LAST:event_btnEliminar1ActionPerformed
+
+    private void btnNuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo2ActionPerformed
+        // TODO add your handling code here:
+        //        String ST = txtArea2.getText();
 //        Sintax s = new Sintax(new principal.LexerCup(new StringReader(ST)));
 //        
 //        try {
@@ -856,8 +883,8 @@ public class Principal extends javax.swing.JFrame {
             a.lblMensaje2.setText("");
             a.setVisible(true);
         }
-
-    }//GEN-LAST:event_AnalizarActionPerformed
+        
+    }//GEN-LAST:event_btnNuevo2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -906,15 +933,16 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Analizar;
     private javax.swing.JTextArea Lineas;
     private componentes.rsbuttom.RSButtonMetro btnAbrir;
     private principal.MaterialButton btnCerrar;
     private componentes.rsbuttom.RSButtonMetro btnEliminar;
+    private componentes.rsbuttom.RSButtonMetro btnEliminar1;
     private componentes.rsbuttom.RSButtonMetro btnGuardar;
     private principal.MaterialButton btnMinimizar;
     private componentes.rsbuttom.RSButtonMetro btnNuevo;
     private componentes.rsbuttom.RSButtonMetro btnNuevo1;
+    private componentes.rsbuttom.RSButtonMetro btnNuevo2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -163,7 +163,6 @@ desde {lexeme=yytext(); return Reservadas;}
 "." {lexeme=yytext(); return Punto;}
 
 
-
 /*-------------------------------Comentarios-------------------------------*/
 
 "//"({D}|{L}|" ")* {lexeme=yytext(); return Comentario;}
