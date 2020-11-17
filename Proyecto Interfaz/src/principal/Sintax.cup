@@ -1,0 +1,40 @@
+package principal;
+
+import java_cup.runtime.Symbol;
+import javax.swing.JOptionPane;
+
+parser code
+{:
+    private Symbol s;
+    
+    public void syntax_error(Symbol s){
+        this.s = s;
+    }
+
+    public Symbol getS(){
+        return this.s;
+}
+:};
+
+terminal Linea, Entero, Cadena, Boleano, Real, Pabrir, Pcerrar, Identificador, Igual, Si, Sino, ComentarioG, Comentario,
+    Numero, Error, Principal, ErrorVariable, Devolver, DobleP, ERROR, Tabulador, Clase, T_dato;
+
+non terminal INICIO, SENTENCIA, DECLARACION, CLASE;
+
+start with INICIO;
+
+INICIO ::= 
+    Clase Identificador SENTENCIA
+    {: JOptionPane.showMessageDialog(null, "Se encontro una clase"); :} 
+;
+SENTENCIA ::= 
+    SENTENCIA DECLARACION  | DECLARACION
+    
+;
+
+DECLARACION ::= 
+
+     T_dato Identificador 
+;
+
+

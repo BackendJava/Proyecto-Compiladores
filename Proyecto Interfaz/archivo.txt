@@ -1,0 +1,3 @@
+clase persona
+    entero nombre
+    cadena hola 
