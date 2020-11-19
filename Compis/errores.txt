@@ -1,0 +1,1 @@
+LEX: Se encontró un error lexico en : 1

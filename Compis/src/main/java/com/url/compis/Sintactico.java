@@ -377,7 +377,7 @@ class CUP$Sintactico$actions {
           case 9: // BIBLIOTECAS ::= incluir espacioBlanco texto 
             {
               Object RESULT =null;
-
+		 System.out.println("Se encontro Bibliotecas"); 
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("BIBLIOTECAS",3, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;

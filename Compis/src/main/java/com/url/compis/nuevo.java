@@ -28,7 +28,7 @@ public class nuevo {
             System.out.println("ERROR");
             Logger.getLogger(nuevo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            System.out.println("ERROR2");
+            System.out.println("ERROR");
             Logger.getLogger(nuevo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

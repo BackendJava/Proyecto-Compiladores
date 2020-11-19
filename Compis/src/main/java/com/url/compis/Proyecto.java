@@ -824,20 +824,20 @@ public class Proyecto implements java_cup.runtime.Scanner {
           case 1:
             { /*de cualquier error usamos el metodo para eliminar lo anterior y solo guarda el error*/
     String linea = String.valueOf(yyline+1);
-    System.out.println("LEX encontre un error " + linea);
+    System.out.println("LEXICO:  encontre un error " + linea);
     escribirError(linea);
     return new Symbol(sym.error);
             }
             // fall through
           case 37: break;
           case 2:
-            { System.out.println("LEX : encontre un Fin de Linea " + (yyline+1));
+            { System.out.println("LEXICO: encontre un Fin de Linea " + (yyline+1));
     return new Symbol(sym.finLinea);
             }
             // fall through
           case 38: break;
           case 3:
-            { System.out.println("LEX : Encontre un ESPACIO EN BLANCO " + yytext());
+            { System.out.println("LEXICO : ESPACIO EN BLANCO " + yytext());
     return new Symbol(sym.espacioBlanco);
             }
             // fall through
@@ -848,73 +848,73 @@ public class Proyecto implements java_cup.runtime.Scanner {
             // fall through
           case 40: break;
           case 5:
-            { System.out.println("LEX : encontre un SIGNO " + yytext());
+            { System.out.println("LEXICO : encontre un SIGNO " + yytext());
     return new Symbol(sym.parentesisA);
             }
             // fall through
           case 41: break;
           case 6:
-            { System.out.println("LEX : encontre un SIGNO " + yytext());
+            { System.out.println("LEXICO : encontre un SIGNO " + yytext());
     return new Symbol(sym.parentesisC);
             }
             // fall through
           case 42: break;
           case 7:
-            { System.out.println("LEX : Encontre un SIGNO " + yytext());
+            { System.out.println("LEXICO : Encontre un SIGNO " + yytext());
     return new Symbol(sym.coma);
             }
             // fall through
           case 43: break;
           case 8:
-            { System.out.println("LEX : Encontre un NUMERO " + yytext());
+            { System.out.println("LEXICO : Encontre un NUMERO " + yytext());
     return new Symbol(sym.numero);
             }
             // fall through
           case 44: break;
           case 9:
-            { System.out.println("LEX : encontre un SIGNO " + yytext());
+            { System.out.println("LEXICO : encontre un SIGNO " + yytext());
     return new Symbol(sym.dosPuntos);
             }
             // fall through
           case 45: break;
           case 10:
-            { System.out.println("LEX : Encontre un SIGNO " + yytext());
+            { System.out.println("LEXICO : Encontre un SIGNO " + yytext());
     return new Symbol(sym.puntoComa);
             }
             // fall through
           case 46: break;
           case 11:
-            { System.out.println("LEX : Encontre un SIGNO " + yytext());
+            { System.out.println("LEXICO : Encontre un SIGNO " + yytext());
     return new Symbol(sym.igual);
             }
             // fall through
           case 47: break;
           case 12:
-            { System.out.println("LEX : Encontre un IDENTIFICADOR " + yytext());
+            { System.out.println("LEXICO : Encontre un IDENTIFICADOR " + yytext());
     return new Symbol(sym.identificadorC);
             }
             // fall through
           case 48: break;
           case 13:
-            { System.out.println("LEX : Encontre un IDENTIFICADOR " + yytext());
+            { System.out.println("LEXICO : Encontre un IDENTIFICADOR " + yytext());
     return new Symbol(sym.identificadorVF);
             }
             // fall through
           case 49: break;
           case 14:
-            { System.out.println("LEX : Encontre una CADENA " + yytext());
+            { System.out.println("LEXICO : Encontre una CADENA " + yytext());
     return new Symbol(sym.texto);
             }
             // fall through
           case 50: break;
           case 15:
-            { System.out.println("LEX : Encontre un COMENTARIO DE 1 LINEA " + yytext());
+            { System.out.println("LEXICO : Encontre un COMENTARIO DE UNA LINEA " + yytext());
     return new Symbol(sym.comentario);
             }
             // fall through
           case 51: break;
           case 16:
-            { System.out.println("LEX : Encontre un NUMERO REAL " + yytext());
+            { System.out.println("LEXICO : Encontre un NUMERO REAL " + yytext());
     return new Symbol(sym.numeroR);
             }
             // fall through
@@ -925,115 +925,115 @@ public class Proyecto implements java_cup.runtime.Scanner {
             // fall through
           case 53: break;
           case 18:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.nulo);
             }
             // fall through
           case 54: break;
           case 19:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());; 
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());; 
     return new Symbol(sym.real);
             }
             // fall through
           case 55: break;
           case 20:
-            { System.out.println("LEX : Encontre un COMENTARIO DE VARIAS LINEAS " + yytext());
+            { System.out.println("LEXICO : COMENTARIO DE VARIAS LINEAS " + yytext());
     return new Symbol(sym.comentario);
             }
             // fall through
           case 56: break;
           case 21:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.clase);
             }
             // fall through
           case 57: break;
           case 22:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.falso);
             }
             // fall through
           case 58: break;
           case 23:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());;
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());;
     return new Symbol(sym.cadena);
             }
             // fall through
           case 59: break;
           case 24:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());;
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());;
     return new Symbol(sym.entero);
             }
             // fall through
           case 60: break;
           case 25:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.boleano);
             }
             // fall through
           case 61: break;
           case 26:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : PALABRA RESERVADA " + yytext());
     return new Symbol(sym.incluir);
             }
             // fall through
           case 62: break;
           case 27:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.metodos);
             }
             // fall through
           case 63: break;
           case 28:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.extiende);
             }
             // fall through
           case 64: break;
           case 29:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.privadas);
             }
             // fall through
           case 65: break;
           case 30:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.privados);
             }
             // fall through
           case 66: break;
           case 31:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.publicas);
             }
             // fall through
           case 67: break;
           case 32:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.publicos);
             }
             // fall through
           case 68: break;
           case 33:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.verdadero);
             }
             // fall through
           case 69: break;
           case 34:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.protegidas);
             }
             // fall through
           case 70: break;
           case 35:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.protegidos);
             }
             // fall through
           case 71: break;
           case 36:
-            { System.out.println("LEX : Encontre una PALABRA RESERVADA " + yytext());
+            { System.out.println("LEXICO : Encontre una PALABRA RESERVADA " + yytext());
     return new Symbol(sym.propiedades);
             }
             // fall through
